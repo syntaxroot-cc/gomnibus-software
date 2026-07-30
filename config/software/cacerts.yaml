@@ -1,0 +1,13 @@
+name: cacerts
+default_version: "2022-10-11"
+license: MPL-2.0
+
+# Mozilla CA bundle from curl. Source is a single .pem file, not an archive.
+source:
+  url: "https://curl.se/ca/cacert-2022-10-11.pem"
+  sha256: "2cff03f9efdaf52626bd1b451d700605dc1ea000c5da56bd0fc59f8f43071040"
+
+build:
+  - mkdir: "${install_dir}/ssl/certs"
+  - command: "cp ${src_dir}/cacert-*.pem ${install_dir}/ssl/certs/cacert.pem"
+  - command: "chmod 644 ${install_dir}/ssl/certs/cacert.pem"

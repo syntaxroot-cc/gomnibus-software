@@ -1,0 +1,38 @@
+name: curl
+default_version: "8.14.1"
+license: MIT
+license_file: COPYING
+
+dependencies:
+  - zlib
+  - openssl
+  - cacerts
+
+source:
+  url: "https://curl.se/download/curl-8.14.1.tar.gz"
+  sha256: "6766ada7101d292b42b8b15681120acd68effa4a9660935853cf6d61f0d984d4"
+
+relative_path: "curl-8.14.1"
+
+versions:
+  - version: "8.12.1"
+    source:
+      url: "https://curl.se/download/curl-8.12.1.tar.gz"
+      sha256: "7b40ea64947e0b440716a4d7f0b7aa56230a5341c8377d7b609649d4aea8dbcf"
+    relative_path: "curl-8.12.1"
+  - version: "8.6.0"
+    source:
+      url: "https://curl.se/download/curl-8.6.0.tar.gz"
+      sha256: "9c6db808160015f30f3c656c0dec125feb9dc00753596bf858a272b5dd8dc398"
+    relative_path: "curl-8.6.0"
+  - version: "8.4.0"
+    source:
+      url: "https://curl.se/download/curl-8.4.0.tar.gz"
+      sha256: "816e41809c043ff285e8c0f06a75a1fa250211bbfb2dc0a037eeef39f1a9e427"
+    relative_path: "curl-8.4.0"
+
+build:
+  - command: "./configure --prefix=${install_dir} --disable-option-checking --disable-manual --disable-debug --enable-optimize --disable-ldap --disable-ldaps --disable-rtsp --enable-proxy --disable-pop3 --disable-imap --disable-smtp --disable-gopher --disable-dependency-tracking --enable-ipv6 --without-brotli --without-libidn2 --without-gnutls --without-librtmp --without-zsh-functions-dir --without-fish-functions-dir --disable-mqtt --with-ssl=${install_dir} --with-zlib=${install_dir} --with-ca-bundle=${install_dir}/ssl/certs/cacert.pem --without-zstd --without-libpsl"
+  - make: []
+  - make:
+      - install

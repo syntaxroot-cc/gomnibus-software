@@ -1,0 +1,31 @@
+name: libffi
+default_version: "3.4.6"
+license: MIT
+license_file: LICENSE
+
+source:
+  url: "https://github.com/libffi/libffi/releases/download/v3.4.6/libffi-3.4.6.tar.gz"
+  sha256: "b0dea9df23c863a7a50e825440f3ebffabd65df1497108e5d437747843895a4e"
+
+relative_path: "libffi-3.4.6"
+
+versions:
+  - version: "3.4.4"
+    source:
+      url: "https://github.com/libffi/libffi/releases/download/v3.4.4/libffi-3.4.4.tar.gz"
+      sha256: "d66c56ad259a82cf2a9dfc408b32bf5da52371500b84745f7fb8b645712df676"
+    relative_path: "libffi-3.4.4"
+  - version: "3.4.2"
+    source:
+      url: "https://github.com/libffi/libffi/releases/download/v3.4.2/libffi-3.4.2.tar.gz"
+      sha256: "540fb721619a6aba3bdeef7d940d8e9e0e6d2c193595bc243241b77ff9e93620"
+    relative_path: "libffi-3.4.2"
+
+build:
+  - configure:
+      - "--disable-option-checking"
+      - "--disable-docs"
+      - "--disable-multi-os-directory"
+  - make: []
+  - make:
+      - install
