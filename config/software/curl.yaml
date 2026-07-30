@@ -32,7 +32,33 @@ versions:
     relative_path: "curl-8.4.0"
 
 build:
-  - command: "./configure --prefix=${install_dir} --disable-option-checking --disable-manual --disable-debug --enable-optimize --disable-ldap --disable-ldaps --disable-rtsp --enable-proxy --disable-pop3 --disable-imap --disable-smtp --disable-gopher --disable-dependency-tracking --enable-ipv6 --without-brotli --without-libidn2 --without-gnutls --without-librtmp --without-zsh-functions-dir --without-fish-functions-dir --disable-mqtt --with-ssl=${install_dir} --with-zlib=${install_dir} --with-ca-bundle=${install_dir}/ssl/certs/cacert.pem --without-zstd --without-libpsl"
+  - configure:
+      - "--disable-option-checking"
+      - "--disable-manual"
+      - "--disable-debug"
+      - "--enable-optimize"
+      - "--disable-ldap"
+      - "--disable-ldaps"
+      - "--disable-rtsp"
+      - "--enable-proxy"
+      - "--disable-pop3"
+      - "--disable-imap"
+      - "--disable-smtp"
+      - "--disable-gopher"
+      - "--disable-dependency-tracking"
+      - "--enable-ipv6"
+      - "--without-brotli"
+      - "--without-libidn2"
+      - "--without-gnutls"
+      - "--without-librtmp"
+      - "--without-zsh-functions-dir"
+      - "--without-fish-functions-dir"
+      - "--disable-mqtt"
+      - "--with-ssl=${install_dir}"
+      - "--with-zlib=${install_dir}"
+      - "--with-ca-bundle=${install_dir}/ssl/certs/cacert.pem"
+      - "--without-zstd"
+      - "--without-libpsl"
   - make: []
   - make:
       - install

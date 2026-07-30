@@ -9,6 +9,7 @@ source:
 
 relative_path: "bzip2-1.0.8"
 
-# bzip2 uses a hand-written Makefile; install via command so PREFIX expands.
 build:
-  - command: "make install PREFIX=${install_dir}"
+  - make:
+      - install
+      - "PREFIX=${install_dir}"

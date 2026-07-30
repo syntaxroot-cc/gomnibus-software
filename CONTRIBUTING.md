@@ -47,18 +47,20 @@ versions:
 
 build:
   - configure: []               # runs ./configure --prefix=${install_dir}
-  - configure:                  # with extra args (no ${var} expansion in args)
+  - configure:                  # with extra args; ${install_dir}, ${src_dir}, ${build_dir} expand
       - "--disable-debug"
+      - "--with-ssl=${install_dir}"
   - command: "..."              # shell command; ${install_dir}, ${src_dir}, ${build_dir} are expanded
   - make: []                    # runs make
   - make: [install]             # runs make install
+  - make:                       # with var expansion in args
+      - install
+      - "PREFIX=${install_dir}"
   - mkdir: "${install_dir}/bin"
   - copy:
       src: "..."
       dst: "..."
 ```
-
-**Note:** Variable substitution (`${install_dir}` etc.) only works in `command:` steps, not in `configure:` or `make:` argument lists. Use a `command:` step when configure args reference install paths.
 
 ## Code conventions
 
