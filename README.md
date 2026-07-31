@@ -2,31 +2,34 @@
 
 A library of reusable software definitions for [gomnibus](https://github.com/syntaxroot-cc/gomnibus) — the Go-based Omnibus build system. Each YAML file describes how to fetch, build, and install an upstream software component into a gomnibus install root.
 
+[![CI](https://github.com/syntaxroot-cc/gomnibus-software/actions/workflows/ci.yml/badge.svg)](https://github.com/syntaxroot-cc/gomnibus-software/actions/workflows/ci.yml)
+[![Go version](https://img.shields.io/github/go-mod/go-version/syntaxroot-cc/gomnibus-software?logo=go)](go.mod)
+[![License](https://img.shields.io/github/license/syntaxroot-cc/gomnibus-software)](LICENSE)
+
 ## Usage
 
-Point your project's `gomnibus.yaml` at this library by adding it to `software_dirs`:
-
-```yaml
-# gomnibus.yaml
-software_dirs:
-  - /path/to/gomnibus-software/config/software
-  - config/software   # your project's own definitions
-```
-
-Or pin a specific commit/tag by cloning it as a git submodule:
+Add this library as a git submodule:
 
 ```bash
-git submodule add https://github.com/syntaxroot-cc/gomnibus-software vendor/gomnibus-software
+git submodule add https://github.com/syntaxroot-cc/gomnibus-software lib/gomnibus-software
 ```
+
+Then point `gomnibus.yaml` at it. List your project's own definitions **first** — the registry uses first-found, so project-local definitions shadow the library:
 
 ```yaml
 # gomnibus.yaml
 software_dirs:
-  - vendor/gomnibus-software/config/software
-  - config/software
+  - config/software                               # project-local (takes precedence)
+  - lib/gomnibus-software/config/software         # shared library
 ```
 
-Then declare the software in your project:
+After cloning a project that uses this library:
+
+```bash
+git submodule update --init
+```
+
+Declare the software in your project:
 
 ```yaml
 # config/projects/myapp.yaml
